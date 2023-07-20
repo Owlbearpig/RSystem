@@ -16,9 +16,9 @@ def main():
         h_ = " ".join([hex(c) for c in dump])
 
         frames = h_.split(eof)
-
+        print(f"number of frames: {len(frames)}")
         vals = []
-        for frame in frames:
+        for frame_idx, frame in enumerate(frames):
             # print(frame, len(frame), "\n")
 
             hex_data = frame.replace(" 0x", "")
@@ -33,8 +33,12 @@ def main():
                 vals.append(val)
 
             # print(hex_data, len(hex_data), "\n")
-            plt.plot(vals)
-            plt.show()
+            plt.plot(vals, label=f"frame idx: {frame_idx}")
+
+            vals = []
+
+    plt.legend()
+    plt.show()
 
 
 if __name__ == '__main__':
